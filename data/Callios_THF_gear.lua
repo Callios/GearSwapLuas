@@ -20,8 +20,11 @@ function init_gear_sets()
     -- Start defining the sets
     --------------------------------------
 	THFCape = {}
-    THFCape.TP      =       {name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Store TP"+10',}}
-
+    THFCape.TP      = {name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+5','"Store TP"+10',}}
+    THFCape.DEXWS = {name="Toutatis's Cape", augments={'DEX+20','Accuracy+20 Attack+20','DEX+10','Weapon skill damage +10%',}}
+    gear.HercFeetFC = { name="Herculean Boots", augments={'"Mag.Atk.Bns."+12','"Fast Cast"+6','Mag. Acc.+1',}}
+    gear.HercLegsFC = {name="Herculean Trousers", augments={'"Fast Cast"+5','MND+5',}}
+    gear.HercHeadFC = { name="Herculean Helm", augments={'"Fast Cast"+3','INT+4','Mag. Acc.+3','"Mag.Atk.Bns."+6',}}
 	--include('augmented-items.lua')
 	
     sets.TreasureHunter = {hands="Plunderer's Armlets +1", waist="Chaac belt", feet="Skulker's poulaines"}
@@ -52,9 +55,9 @@ function init_gear_sets()
 	
     -- Fast cast sets for spells
     sets.precast.FC = {ammo="Staunch tathlum +1",
-		head="Herculean helm",neck="Orunmila's torque",ear1="Enchanter earring +1",ear2="Loquacious Earring",
-		body="Adhemar jacket",ring2="Lebeche ring",
-		back="Swith cape",waist="Witful belt"}
+		head=gear.HercHeadFC,neck="Orunmila's torque",ear1="Enchanter earring +1",ear2="Loquacious Earring",
+		body="Adhemar jacket",ring1="Rahab Ring",ring2="Lebeche ring", neck="Baetyl Pendant", hands="Leyline gloves", legs=gear.HercLegsFC,
+		back="Swith cape",waist="Tempus Fugit +1", feet=gear.HercFeetFC}
      
     sets.precast.FC.Utsusemi = set_combine(sets.precast.FC, {body="Passion jacket",neck="Magoraga Beads"})
      
@@ -70,7 +73,7 @@ function init_gear_sets()
     sets.precast.WS = {ammo="Falcon eye",
 		head="Lilitu headpiece",neck="Caro necklace",ear1="Sherida earring",ear2="Moonshade earring",
         body="Plunderer's vest +3",hands="Meghanada gloves +2",ring1="Regal",ring2="Ilabrat ring",
-        back=gear.ToutCapeWS,waist="Grunfeld rope",legs="Lustratio subligar +1",feet="Lustratio leggings +1"}
+        back=THFCape.DEXWS,waist="Grunfeld rope",legs="Lustratio subligar +1",feet="Lustratio leggings +1"}
 		
     sets.precast.WS.Acc = set_combine(sets.precast.WS, {})
      
@@ -78,7 +81,7 @@ function init_gear_sets()
     sets.precast.WS['Evisceration'] = {ammo="Yetshila",
 		head="Adhemar bonnet +1",neck="Fotia gorget",ear1="Sherida earring",ear2="Moonshade earring",
         body="Plunderer's vest +3",hands="Meghanada gloves +2",ring1="Regal ring",ring2="Ilabrat ring",
-        back=gear.ToutCapeCRIT,waist="Fotia belt",legs="Lustratio subligar +1",feet="Lustratio leggings +1"}
+        back=THFCape.DEXWS,waist="Fotia belt",legs="Lustratio subligar +1",feet="Lustratio leggings +1"}
 		
     sets.precast.WS['Evisceration'].Acc = set_combine(sets.precast.WS['Evisceration'], {ammo="Falcon eye"})
     sets.precast.WS['Evisceration'].SA = set_combine(sets.precast.WS['Evisceration'].Mod, {ammo="Yetshila"})
@@ -89,7 +92,7 @@ function init_gear_sets()
 	sets.precast.WS['Exenterator'] = {ammo="Yamarang",
 		head="Meghanada visor +2",neck="Fotia gorget",ear1="Sherida earring",ear2="Moonshade earring",
         body="Plunderer's vest +3",hands="Meghanada gloves +2",ring1="Dingir ring",ring2="Ilabrat ring",
-        back=gear.ToutCapeWS,waist="Fotia belt",legs="Meghanada chausses +2",feet="Meghanada jambeaux +2"}
+        back=THFCape.DEXWS,waist="Fotia belt",legs="Meghanada chausses +2",feet="Meghanada jambeaux +2"}
 		
     sets.precast.WS['Exenterator'].Acc = set_combine(sets.precast.WS['Exenterator'], {ammo="Falcon eye"})
     sets.precast.WS['Exenterator'].SA = set_combine(sets.precast.WS['Exenterator'].Mod, {ammo="Falcon eye"})
@@ -108,7 +111,7 @@ function init_gear_sets()
     right_ear="Moonshade Earring",
     left_ring="Ilabrat Ring",
     right_ring="Regal Ring",
-    back= THFCape.TP,}
+    back= THFCape.DEXWS,}
 		
     sets.precast.WS["Rudra's Storm"].Acc = set_combine(sets.precast.WS["Rudra's Storm"], {head="Meghanada visor +2"})
     sets.precast.WS["Rudra's Storm"].SA = set_combine(sets.precast.WS["Rudra's Storm"], {head="Lilitu headpiece",ammo="Yetshila"})
@@ -239,8 +242,8 @@ function init_gear_sets()
     feet={ name="Herculean Boots", augments={'Accuracy+14 Attack+14','"Triple Atk."+3','Accuracy+15',}},
     neck="Anu Torque",
     waist="Reiki yotai",
-    left_ear="Telos Earring",
-    right_ear="Sherida Earring",
+    left_ear="Eabani Earring",
+    right_ear="Dedition Earring",
     ring1="Ilabrat Ring",
     ring2="Epona's Ring",
     back= THFCape.TP,}

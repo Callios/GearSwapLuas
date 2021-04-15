@@ -50,6 +50,8 @@ function init_gear_sets()
 
     gear.HercFeetFC = { name="Herculean Boots", augments={'"Mag.Atk.Bns."+12','"Fast Cast"+6','Mag. Acc.+1',}}
     gear.HercFeetTP = { name="Herculean Boots", augments={'Accuracy+14 Attack+14','"Triple Atk."+3','Accuracy+15',}}
+    gear.HercLegsFC = { name="Herculean Trousers", augments={'"Fast Cast"+5','MND+5',}}
+    gear.HercHeadFC = { name="Herculean Helm", augments={'"Fast Cast"+3','INT+4','Mag. Acc.+3','"Mag.Atk.Bns."+6',}}
 
     sets.TreasureHunter = {waist="Chaac Belt", 
     body="Herculean Vest", augments={'Accuracy+22','"Fast Cast"+1','"Treasure Hunter"+1','Mag. Acc.+16 "Mag.Atk.Bns."+16',}}
@@ -88,7 +90,8 @@ function init_gear_sets()
 
     -- Fast cast sets for spells
     
-    sets.precast.FC = {head="Herculean helm",body="Adhemar jacket",legs="Herculean Trousers", augments={'"Fast Cast"+5','MND+5',},ammo="Impatiens",ear1="Enchanter earring +1",ear2="Loquacious Earring",
+    sets.precast.FC = {head=gear.HercHeadFC,body="Adhemar jacket",legs=gear.HercLegsFC,
+    ammo="Impatiens",ear1="Enchanter earring +1",ear2="Loquacious Earring",
     hands="Leyline Gloves",ring1="Kishar Ring",ring2="Rahab Ring",neck="Baetyl Pendant",waist="Sailfi Belt+1",
     feet=gear.HercFeetFC}
 
@@ -129,7 +132,7 @@ function init_gear_sets()
     -- Midcast sets
     --------------------------------------
 
-    sets.midcast.FastRecast = {head="Herculean helm",body="Adhemar jacket",ammo="Impatiens",ear1="Enchanter earring +1",ear2="Loquacious Earring",
+    sets.midcast.FastRecast = {head=gear.HercHeadFC,body="Adhemar jacket",ammo="Impatiens",ear1="Enchanter earring +1",ear2="Loquacious Earring",
     hands="Leyline Gloves",ring1="Kishar Ring",ring2="Rahab Ring",neck="Baetyl Pendant",
     feet=gear.HercFeetFC}
         
@@ -170,7 +173,7 @@ function init_gear_sets()
     sets.idle = {
         head="Malignance Chapeau",neck="Bathy Choker +1",ear1="Genmei Earring",ear2="Eabani Earring",
         body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Gelatinous Ring +1",
-        back="Solemnity",waist="Flume Belt",legs="Malignance Tights",feet="Danzo Sune-ate"}
+        back="Solemnity",waist="Flume Belt",legs="Malignance Tights",feet="Danzo Sune-ate", ammo="Staunch Tathlum +1"}
 
     sets.idle.Town = {head="Malignance Chapeau",neck="Bathy Choker +1",ear1="Genmei Earring",ear2="Eabani Earring",
         body="Malignance Tabard",hands="Malignance Gloves",ring1="Defending Ring",ring2="Gelatinous Ring +1",

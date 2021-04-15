@@ -16,7 +16,7 @@ function job_setup()
     state.Buff.Sentinel = buffactive.sentinel or false
     state.Buff.Cover = buffactive.cover or false
     state.Buff.Doom = buffactive.Doom or false
-
+    state.Buff.MythicAM3 = buffactive["Aftermath: Lv. 3"] or false
 blue_magic_maps = {}
 -- Spell sets
     blue_magic_maps.Enhance = S{'Cocoon','Metallic Body'}
@@ -32,25 +32,25 @@ end
  
 -- Setup vars that are user-dependent.  Can override this function in a sidecar file.
 function user_setup()
-    state.OffenseMode:options('Normal', 'Hybrid', 'AM3', 'Acc','PDT', 'MDT', 'Cleaving')
+    state.OffenseMode:options('Normal', 'Hybrid', 'Sakpata','PDT', 'MDT', 'CleaveTest')
     state.HybridMode:options('Normal', 'PDT', 'Reraise')
     state.WeaponskillMode:options('Normal', 'Acc')
     state.CastingMode:options('Normal', 'SIRD', 'Resistant')
     state.PhysicalDefenseMode:options('PDT', 'HP', 'Reraise', 'Charm')
     state.MagicalDefenseMode:options('MDT', 'HP', 'Reraise', 'Charm')
-    state.IdleMode:options('Normal', 'Refresh', 'DT')
+    state.IdleMode:options('Normal', 'Refresh', 'DT', 'HP')
      
     state.ExtraDefenseMode = M{['description']='Extra Defense Mode', 'None', 'MP', 'Knockback', 'MP_Knockback'}
     state.EquipShield = M(false, 'Equip Shield w/Defense')
      
     gear.Weard = { name="Weard Mantle", augments={'VIT+1','DEX+3','Enmity+2','Phalanx +5'}}
     gear.RudianosTP = { name="Rudianos's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','"Dbl.Atk."+10',}}
-    gear.RudianosWS = { name="Rudianos's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','Accuracy+10','Weapon skill damage +10%',}}
+    gear.RudianosWS = { name="Rudianos's Mantle", augments={'STR+20','Accuracy+20 Attack+20','Weapon skill damage +10%',}}
     gear.RudianosFC = { name="Rudianos's Mantle", augments={'"Fast Cast"+10',}}
     gear.RudianosEnm = { name="Rudianos's Mantle", augments={'HP+60','Eva.+20 /Mag. Eva.+20','Mag. Evasion+10','Enmity+10',}}
     gear.Ejekamal = { name="Ejekamal Boots", augments={'Haste+2','"Snapshot"+2','"Fast Cast"+3',}}
     gear.AcroLegsFC = { name="Acro Breeches", augments={'"Fast Cast"+2'}}
-    gear.SIRDFeet = { name="Odyssean Greaves", augments={'Mag. Acc.+11 "Mag.Atk.Bns."+11','"Fast Cast"+2','"Mag.Atk.Bns."+1',}}
+    gear.SIRDFeet = { name="Odyssean Greaves", augments={'Rng.Atk.+16','Accuracy+30','"Refresh"+1','Mag. Acc.+6 "Mag.Atk.Bns."+6',}}
     gear.OdyWSBODY = { name="Odyss. Chestplate", augments={'Accuracy+15','Weapon skill damage +5%','STR+9',}}
     gear.ValWSLEGS = { name="Valorous Hose", augments={'"Subtle Blow"+3','Magic Damage +3','Weapon skill damage +9%','Accuracy+17 Attack+17',}}
     gear.OdyMagWSFeet = { name="Odyssean Greaves", augments={'Mag. Acc.+15 "Mag.Atk.Bns."+15','Weapon skill damage +4%','INT+4','"Mag.Atk.Bns."+10',}}
@@ -196,17 +196,22 @@ function init_gear_sets()
 
 
     sets.precast.WS['Atonement'] = {ammo="Staunch tathlum +1",
-        head="Souveran Schaller +1",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Thurd Earring",
+        head="Souveran Schaller +1",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Thrud Earring",
         body="Souveran Cuirass +1",hands="Souveran handschuhs +1",ring1="Apeile Ring",ring2="Apeile ring +1",
         back=gear.RudianosEnm,waist="Fotia Belt",legs="Souveran Diechlings +1",feet="Souveran Schuhs +1"}
          
     sets.precast.WS['Savage Blade'] = {ammo="Amar Cluster",
-        head="Hjarrandi Helm",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Thurd Earring",
-        body=gear.OdyWSBODY,hands="Sulevia's Gauntlets +2",ring1="Rufescent Ring",ring2="Regal Ring",
+        head="Valorous Mask",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Thrud Earring",
+        body=gear.OdyWSBODY,hands="Valorous Mitts",ring1="Rufescent Ring",ring2="Regal Ring",
         back=gear.RudianosWS,waist="Sailfi Belt +1",legs=gear.ValWSLEGS,feet="Sulevia's Leggings +2"}    
      
+        sets.precast.WS['Judgment'] = {ammo="Amar Cluster",
+        head="Valorous Mask",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Thrud Earring",
+        body=gear.OdyWSBODY,hands="Valorous Mitts",ring1="Rufescent Ring",ring2="Regal Ring",
+        back=gear.RudianosWS,waist="Sailfi Belt +1",legs=gear.ValWSLEGS,feet="Sulevia's Leggings +2"}
+
     sets.precast.WS['Circle Blade'] = {ammo="Amar Cluster",
-        head="Sulevia's Mask",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Thurd Earring",
+        head="Valorous Mask",neck="Fotia Gorget",ear1="Moonshade Earring",ear2="Thrud Earring",
         body=gear.OdyWSBODY,hands="Sulevia's Gauntlets +2",ring1="Rufescent Ring",ring2="Regal Ring",
         back=gear.RudianosWS,waist="Sailfi Belt +1",legs=gear.ValWSLEGS,feet="Sulevia's Leggings +2"}
          
@@ -236,6 +241,10 @@ function init_gear_sets()
     waist="Rumination Sash", -- 10 
     legs="Carmine Cuisses +1", -- 20 
     head="Souveran Schaller +1", -- 20
+    body="Souveran Cuirass +1",
+    ring1="Defending Ring",
+    ring2="Apeile ring +1",
+    hands="Souveran handschuhs +1",
     feet=gear.SIRDFeet,} -- 20
  
     sets.midcast.Flash = set_combine(sets.midcast.Enmity, {neck="Unmoving collar +1", wasit="Tempus Fugit +1"})
@@ -251,7 +260,7 @@ function init_gear_sets()
     neck="Bathy Choker +1",
     waist="Creed Baudrier",
     left_ear="Odnowa Earring +1",
-    right_ear="Odnowa Earring",
+    right_ear="Tuisto earring",
     ring1="Ilabrat Ring",
     ring2="Moonbeam Ring",
     back="Moonbeam Cape",
@@ -259,7 +268,7 @@ function init_gear_sets()
 }
 
     sets.midcast.Phalanx = set_combine(sets.midcast.FastRecast, {hands="Souveran handschuhs +1", 
-        feet="Souveran schuhs +1", body=gear.PhalanxBody, back=gear.Weard, neck="Incanter's Torque",
+        feet="Souveran schuhs +1", body=gear.PhalanxBody, legs="Sakpata's Cuisses", back=gear.Weard, neck="Incanter's Torque",
          ring1="Stikini Ring", ring2="Stikini Ring"})
      
     sets.midcast.Stun = set_combine(sets.midcast.Enmity, {})
@@ -275,11 +284,38 @@ function init_gear_sets()
     sets.midcast['Blue Magic'].SIRD = set_combine(sets.midcast['Blue Magic'], sets.midcast.SIRD)
     sets.midcast['Blue Magic']['Wild Carrot'] = set_combine(sets.midcast.Enmity, sets.midcast.Cure)
     sets.midcast['Blue Magic']['Wild Carrot'].SIRD = set_combine(sets.midcast['Blue Magic']['Wild Carrot'], sets.midcast.SIRD)
-    sets.midcast['Blue Magic']['Blank Gaze']= set_combine(sets.midcast.Enmity, {waist="Gishdubar sash"})
-    --sets.midcast['Blue Magic']['Healing Breeze'] = set_combine(sets.midcast.Enmity, {waist="Gishdubar sash"})
+    --sets.midcast['Blue Magic']['Blank Gaze'] = set_combine(sets.midcast.Enmity, sets.midcast.SIRD)
+    --sets.midcast['Blue Magic']['Blank Gaze'].SIRD = set_combine(sets.midcast['Blue Magic']['Blank Gaze'], sets.midcast.SIRD)
+
+    sets.midcast['Blank Gaze'] =  set_combine(sets.midcast.SIRD)
+    sets.midcast['Jettatura'] =  set_combine(sets.midcast.SIRD)
+    sets.midcast['Geist Wall'] =  set_combine(sets.midcast.SIRD)
+    sets.midcast['Sheep Song'] =  set_combine(sets.midcast.SIRD)
+    sets.midcast['Soporific'] =  set_combine(sets.midcast.SIRD)
+    sets.midcast['Awful Eye'] =  set_combine(sets.midcast.SIRD)
+    --sets.midcast[''] =  set_combine(sets.midcast.SIRD)
+
+    -- sets.midcast['Blue Magic']['Blank Gaze'] = set_combine(sets.midcast.Enmity, {waist="Rumination Sash"})
+    --  sets.midcast['Blue Magic']['Blank Gaze'].SIRD = set_combine(sets.midcast.Enmity, sets.midcast.SIRD, {})
+    --  sets.midcast['Blue Magic']['Jettatura'] = set_combine(sets.midcast.Enmity, sets.midcast.SIRD,{})
+    --  sets.midcast['Blue Magic']['Geist Wall'] = set_combine(sets.midcast.Enmity, sets.midcast.SIRD,{})
+    --  sets.midcast['Blue Magic']['Sheep Song'] = set_combine(sets.midcast.Enmity, sets.midcast.SIRD, {})
+    --  sets.midcast['Blue Magic']['Awful Eye'] = set_combine(sets.midcast.Enmity, sets.midcast.SIRD, {})
+    --  sets.midcast['Blue Magic']['Soporific'] = set_combine(sets.midcast.Enmity, sets.midcast.SIRD, {})
+     
+
+    --  sets.midcast['Blue Magic']['Blank Gaze'].SIRD = set_combine(sets.midcast.Enmity, sets.midcast.SIRD, {})
+    --  sets.midcast['Blue Magic']['Jettatura'].SIRD = set_combine(sets.midcast.Enmity, sets.midcast.SIRD,{})
+    --  sets.midcast['Blue Magic']['Geist Wall'].SIRD = set_combine(sets.midcast.Enmity, sets.midcast.SIRD,{})
+    --  sets.midcast['Blue Magic']['Sheep Song'].SIRD = set_combine(sets.midcast.Enmity, sets.midcast.SIRD, {})
+    --  sets.midcast['Blue Magic']['Awful Eye'].SIRD = set_combine(sets.midcast.Enmity, sets.midcast.SIRD, {})
+    --  sets.midcast['Blue Magic']['Soporific'].SIRD = set_combine(sets.midcast.Enmity, sets.midcast.SIRD, {})
+     --sets.midcast['Blue Magic']['Healing Breeze'].SIRD = set_combine(sets.midcast.Enmity, sets.midcast.SIRD, {})
+     --sets.midcast['Blue Magic']['Healing Breeze'] = set_combine(sets.midcast.Enmity, {waist="Gishdubar sash"})
   
     sets.midcast['Blue Magic'].Healing = set_combine(sets.midcast.Cure)
     sets.midcast['Blue Magic'].Enmity = set_combine(sets.midcast.Enmity)
+    sets.midcast['Blue Magic'].SIRD = set_combine(sets.midcast['Blue Magic'].Enmity,sets.midcast.SIRD)
 
  
 --95 Enmity, -104% Spell Interrupt, 2,713 HP--
@@ -311,12 +347,17 @@ function init_gear_sets()
  
     -- Idle sets
     sets.idle = {ammo="Staunch Tathlum +1",
-        head="Souveran schaller +1",neck="Bathy Choker +1",ear1="Odnowa earring +1",ear2="Infused Earring",
-        body="Dagon breastplate",hands="Sulevia's Gauntlets +2",ring1="Gelatinous ring +1",ring2="Defending Ring",
-        back=gear.RudianosEnm,waist="Fucho-no-obi",legs="Carmine Cuisses +1",feet="Sulevia's Leggings +2"}
+        head="Sakpata's Helm",neck="Bathy Choker +1",ear1="Odnowa earring +1",ear2="Tuisto earring",
+        body="Sakpata's breastplate",hands="Sakpata's gauntlets",ring1="Gelatinous ring +1",ring2="Defending Ring",
+        back=gear.RudianosEnm,waist="Carrier's sash",legs="Carmine Cuisses +1",feet="Sakpata's Leggings"}
 
-        sets.idle.DT = {ammo="Staunch Tathlum +1",
-        head="Souveran schaller +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Etiolation Earring",
+    sets.idle.DT = {ammo="Staunch Tathlum +1",
+        head="Sakpata's Helm",neck="Loricate Torque +1",ear1="Odnowa earring +1",ear2="Eabani Earring",
+        body="Sakpata's breastplate",hands="Sakpata's gauntlets",ring1="Gelatinous ring +1",ring2="Defending Ring",
+        back=gear.RudianosEnm,waist="Carrier's sash",legs="Sakpata's cuisses",feet="Sakpata's Leggings"}
+
+    sets.idle.HP = {ammo="Staunch Tathlum +1",
+        head="Souveran schaller +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Tuisto earring",
         body="Souveran cuirass +1",hands="Souveran handschuhs +1",ring1="Gelatinous Ring +1",ring2="Defending Ring",
         back=gear.RudianosEnm,waist="Flume Belt",legs="Souveran Diechlings +1",feet="Souveran Schuhs +1"}
  
@@ -325,9 +366,9 @@ function init_gear_sets()
         body="Twilight Mail",ring1="Sheltered Ring",ring2="Paguroidea Ring"})
  
     sets.idle.Town = {ammo="Staunch Tathlum +1",
-        head="Souveran schaller +1",neck="Bathy Choker +1",ear1="Odnowa earring +1",ear2="Infused Earring",
-        body="Dagon breastplate",hands="Souveran handschuhs +1",ring1="Gelatinous Ring +1",ring2="Defending Ring",
-        back=gear.RudianosEnm,waist="Fucho-no-obi",legs="Carmine Cuisses +1",feet="Souveran Schuhs +1"}
+        head="Sakpata's Helm",neck="Bathy Choker +1",ear1="Odnowa earring +1",ear2="Infused Earring",
+        body="Sakpata's breastplate",hands="Sakpata's gauntlets",ring1="Gelatinous Ring +1",ring2="Defending Ring",
+        back=gear.RudianosEnm,waist="Carrier's sash",legs="Carmine Cuisses +1",feet="Sakpata's Leggings"}
      
     sets.idle.Weak = set_combine(sets.idle,{back=gear.RudianosEnm,legs="Sulevia's Cuisses +2"})
      
@@ -335,7 +376,7 @@ function init_gear_sets()
      
     sets.Kiting = {legs="Carmine Cuisses +1"}
  
-    sets.latent_refresh = {waist="Fucho-no-obi"}
+    sets.latent_refresh = {waist="Fucho-no-obi",ammo="Homiliary"}
  
  
     --------------------------------------
@@ -355,30 +396,33 @@ function init_gear_sets()
     -- Basic defense sets.
          
     sets.defense.PDT = {ammo="Staunch Tathlum +1",
-        head="Souveran schaller +1",neck="Loricate Torque +1",ear1="Genmei Earring",ear2="Etiolation Earring",
-        body="Souveran cuirass +1",hands="Sulevia's Gauntlets +2",ring1="Gelatinous Ring +1",ring2="Defending Ring",
-        back=gear.RudianosTP,waist="Flume Belt",legs="Sulevia's Cuisses +2",feet="Souveran schuhs +1"}
+    head="Sakpata's Helm",neck="Loricate Torque +1",ear1="Odnowa earring +1",ear2="Eabani Earring",
+    body="Sakpata's breastplate",hands="Sakpata's gauntlets",ring1="Gelatinous ring +1",ring2="Defending Ring",
+    back=gear.RudianosEnm,waist="Carrier's sash",legs="Sakpata's cuisses",feet="Sakpata's Leggings"}
+
     sets.defense.HP = {ammo="Plumose Sachet",
         head="Souveran schaller +1",neck="Bathy Chocker +1",ear1="Odnowa earring +1",ear2="Odnowa Earring",
         body="Reverence Surcoat +2",hands="Souveran handschuhs +1",ring1="Gelatinous Ring +1",ring2="Defending Ring",
-        back="Moonbeam Cape",
-        waist="Creed Baudrier",legs="Souveran diechlings +1",feet="Souveran Schuhs +1"}
+        back="Moonbeam Cape", waist="Creed Baudrier",legs="Souveran diechlings +1",feet="Souveran Schuhs +1"}
+
     sets.defense.Reraise = {ammo="Staunch Tathlum +1",
         head="Twilight Helm",neck="Twilight Torque",ear1="Oneiros Earring",ear2="Creed Earring",
         body="Twilight Mail",hands="Sulevia's Gauntlets +2",ring1="Vocane Ring +1",ring2="Defending Ring",
         back=gear.Weard,
         waist="Nierenschutz",legs="Sulevia's Cuisses +2",feet="Sulevia's Leggings +2"}
+
     sets.defense.Charm = {ammo="Homiliary",
         head="Sulevia's Mask +2",neck="Twilight Torque",ear1="Oneiros Earring",ear2="Creed Earring",
         body="Sulevia's Platemail +2",hands="Sulevia's Gauntlets +2",ring1="Vocane Ring +1",ring2="Defending Ring",
         back=gear.Weard,
         waist="Flume Belt",legs="Sulevia's Cuisses +2",feet="Sulevia's Leggings +2"}
+
     -- To cap MDT with Shell IV (52/256), need 76/256 in gear.
     -- Shellra V can provide 75/256, which would need another 53/256 in gear.
     sets.defense.MDT = {ammo="Staunch Tathlum +1",
-        head="Souveran schaller +1",neck="Loricate Torque +1",ear1="Odnowa Earring +1",ear2="Etiolation earring",
-        body="Souveran cuirass +1",hands="Flamma Manopolas +2",ring1="Dark Ring",ring2="Defending Ring",
-        back=gear.RudianosEnm,waist="Flume Belt",legs="Souveran diechlings +1",feet="Flamma Gambieras +2"}
+    head="Sakpata's Helm",neck="Warder's Charm +1",ear1="Odnowa earring +1",ear2="Eabani Earring",
+    body="Sakpata's breastplate",hands="Sakpata's gauntlets",ring1="Minerva's Ring",ring2="Defending Ring",
+    back=gear.RudianosEnm,waist="Carrier's sash",legs="Sakpata's cuisses",feet="Sakpata's Leggings"}
  
  
     --------------------------------------
@@ -390,12 +434,26 @@ function init_gear_sets()
         body="Dagon breastplate",hands="Sulevia's Gauntlets +2",ring1="Petrov Ring",ring2="Chirich Ring +1",
         back=gear.RudianosTP,waist="Tempus Fugit +1",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +2"}
  
- sets.engaged.Hybrid = {ammo="Staunch Tathlum +1",
+    sets.engaged.Hybrid = {ammo="Staunch Tathlum +1",
         head="Hjarrandi Helm",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Brutal Earring",
         body="Hjarrandi breastplate",hands="Sulevia's Gauntlets +2",ring1="Chirich Ring +1",ring2="Defending Ring",
         back=gear.RudianosTP,waist="Tempus Fugit +1",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +2"}
 
-        sets.engaged.AM3 = {ammo="Ginsen",
+    sets.engaged.Sakpata = {ammo="Staunch Tathlum +1",
+        head="Sakpata's Helm",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Brutal Earring",
+        body="Sakpata's breastplate",hands="Sakpata's gauntlets",ring1="Chirich Ring +1",ring2="Defending Ring",
+        back=gear.RudianosTP,waist="Sailfi belt +1",legs="Sakpata's cuisses",feet="Sakpata's Leggings"}
+
+    
+
+    ---End Burtgang
+
+    sets.engaged.Sakpata = {ammo="Staunch Tathlum +1",
+        head="Sakpata's Helm",neck="Combatant's Torque",ear1="Cessance Earring",ear2="Brutal Earring",
+        body="Sakpata's breastplate",hands="Sakpata's gauntlets",ring1="Chirich Ring +1",ring2="Defending Ring",
+        back=gear.RudianosTP,waist="Sailfi belt +1",legs="Sakpata's cuisses",feet="Sakpata's Leggings"}
+
+        sets.engaged.MythicAM3 = {ammo="Ginsen",
         head="Hjarrandi Helm",neck="Combatant's Torque",ear1="Telos Earring",ear2="Dedition Earring",
         body="Hjarrandi breastplate",hands="Flamma Manopolas +2",ring1="Flamma Ring",ring2="Chirich Ring +1",
         back=gear.RudianosTP,waist="Tempus Fugit +1",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +2"}
@@ -419,6 +477,23 @@ function init_gear_sets()
         body="Souveran cuirass +1",hands="Souveran handschuhs +1",ring1="Dark Ring",ring2="Defending Ring",
         back=gear.RudianosEnm,waist="Flume Belt",legs="Souveran diechlings +1",feet="Flamma Gambieras +2"}
 
+--Burtgang 
+
+sets.engaged.Burtgang = sets.engaged
+sets.engaged.Burtgang.Sakpata = sets.engaged.Sakpata
+
+-- --Burtgang AM3
+
+sets.engaged.Burtgang.MythicAM3 = set_combine(sets.engaged.Burtgang, {ammo="Ginsen",
+    head="Hjarrandi Helm",neck="Combatant's Torque",ear1="Telos Earring",ear2="Dedition Earring",
+    body="Hjarrandi breastplate",hands="Flamma Manopolas +2",ring1="Flamma Ring",ring2="Chirich Ring +1",
+    back=gear.RudianosTP,waist="Tempus Fugit +1",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +2"})
+
+sets.engaged.Burtgang.Sakpata.MythicAM3 = set_combine(sets.engaged.Burtgang.MythicAM3, {
+    head="Sakpata's Helm",neck="Combatant's Torque",
+    body="Sakpata's breastplate",hands="Sakpata's gauntlets",ring1="Chirich Ring +1",ring2="Defending Ring",
+    back=gear.RudianosTP,waist="Sailfi belt +1",legs="Sakpata's cuisses",feet="Sakpata's Leggings"})
+
     sets.engaged.Acc.PDT = sets.engaged.PDT
     sets.engaged.Reraise = set_combine(sets.engaged, sets.Reraise)
     sets.engaged.Acc.Reraise = set_combine(sets.engaged.Acc, sets.Reraise)
@@ -435,6 +510,11 @@ function init_gear_sets()
  
     sets.buff.Doom = {ring1="Saida Ring"}
     sets.buff.Cover = {head="Reverence Coronet +1", body="Caballarius Surcoat +1"}
+   
+    sets.buff.MythicAM3 = {ammo="Ginsen",
+    head="Hjarrandi Helm",neck="Combatant's Torque",ear1="Telos Earring",ear2="Dedition Earring",
+    body="Hjarrandi breastplate",hands="Flamma Manopolas +2",ring1="Flamma Ring",ring2="Chirich Ring +1",
+    back=gear.RudianosTP,waist="Tempus Fugit +1",legs="Sulevia's Cuisses +2",feet="Flamma Gambieras +2"}
  
 end
  
@@ -443,13 +523,13 @@ end
 -- Job-specific hooks for standard casting events.
 -------------------------------------------------------------------------------------------------------------------
  
-function job_pretarget(spell, action, spellMap, eventArgs)
-    if spell.type == "WeaponSkill" and player.status == 'Engaged' and spell.target.distance > target_distance then -- Cancel WS If You Are Out Of Range --
-       eventArgs.cancel=true
-       add_to_chat(123, spell.name..' Canceled: [Out of Range]')
-       return
-    end
-end
+-- function job_pretarget(spell, action, spellMap, eventArgs)
+--     if spell.type == "WeaponSkill" and player.status == 'Engaged' and spell.target.distance > target_distance then -- Cancel WS If You Are Out Of Range --
+--        eventArgs.cancel=true
+--        add_to_chat(123, spell.name..' Canceled: [Out of Range]')
+--        return
+--     end
+-- end
  
  
 --function job_midcast(spell, action, spellMap, eventArgs)
@@ -518,7 +598,9 @@ function customize_melee_set(meleeSet)
     if state.Buff.Doom then
         meleeSet = set_combine(meleeSet, sets.buff.Doom)
     end
-     
+    if state.Buff.MythicAM3 then
+        meleeSet = set_combine(meleeSet, sets.engaged.MythicAM3)
+    end
     return meleeSet
 end
  
@@ -584,8 +666,37 @@ function display_current_job_state(eventArgs)
  
     eventArgs.handled = true
 end
- 
- 
+
+
+function job_buff_change(buff, gain)
+  -- AM custom groups
+if buff:startswith('Aftermath') then
+    if player.equipment.main == 'Burtgang' then
+        classes.CustomMeleeGroups:clear()
+
+        if (buff == "Aftermath: Lv.3" and gain) or buffactive['Aftermath: Lv.3'] then
+            classes.CustomMeleeGroups:append('MythicAM3')
+            add_to_chat(8, '-------------Mythic AM3 UP-------------')
+        -- elseif (buff == "Aftermath: Lv.3" and not gain) then
+        --     add_to_chat(8, '-------------Mythic AM3 DOWN-------------')
+        end
+
+        if not midaction() then
+            handle_equipping_gear(player.status)
+        end
+    else
+        classes.CustomMeleeGroups:clear()
+
+        if buff == "Aftermath" and gain or buffactive.Aftermath then
+            classes.CustomMeleeGroups:append('AM')
+        end
+
+        if not midaction() then
+            handle_equipping_gear(player.status)
+        end
+    end
+end
+end
 -------------------------------------------------------------------------------------------------------------------
 -- User self-commands.
 -------------------------------------------------------------------------------------------------------------------
@@ -639,32 +750,52 @@ end
 function select_default_macro_book()
     -- Default macro set/book
     if player.sub_job == 'WAR' then
-        set_macro_page(5, 1)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'DNC' then
-        set_macro_page(1, 1)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'THF' then
-        set_macro_page(6, 1)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'SAM' then
-        set_macro_page(7, 1)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'RNG' then
-        set_macro_page(8, 1)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'PLD' then
-        set_macro_page(9, 1)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'WHM' then
-        set_macro_page(1, 2)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'RDM' then
-        set_macro_page(1, 3)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'SCH' then
-        set_macro_page(1, 4)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'BLU' then
         set_macro_page(1, 5)
     elseif player.sub_job == 'DRK' then
-        set_macro_page(5, 5)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'RUN' then
-        set_macro_page(1, 6)
+        set_macro_page(1, 5)
     elseif player.sub_job == 'NIN' then
-        set_macro_page(10, 1)
+        set_macro_page(1, 5)
     else
-        set_macro_page(1, 7)  --BRD
+        set_macro_page(1, 5)  --BRD
     end
 end
+
+function update_melee_groups()
+
+    classes.CustomMeleeGroups:clear()
+    -- mythic AM	
+    if player.equipment.main == 'Burtgang' then
+        if buffactive['Aftermath: Lv.3'] then
+            classes.CustomMeleeGroups:append('MythicAM3')
+        end
+    else
+        -- relic AM
+        if buffactive['Aftermath'] then
+            classes.CustomMeleeGroups:append('AM')
+        end
+        -- if buffactive['Samurai Roll'] then
+        --     classes.CustomRangedGroups:append('SamRoll')
+        -- end
+    end
+end
+
