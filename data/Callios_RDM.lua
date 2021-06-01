@@ -181,7 +181,7 @@ function get_sets()
     RELIC.Body      =   "Viti. Tabard +3"
     RELIC.Hands     =   "Viti. Gloves +3"
     RELIC.Legs      =   "Viti. Tights +3"
-    RELIC.Feet      =   "Vitiation Boots +2"
+    RELIC.Feet      =   "Vitiation Boots +3"
 
     --Lethargy
     EMPY.Head       =   "Leth. Chappel +1"
@@ -225,7 +225,7 @@ function get_sets()
         neck="Bathy Choker +1",
         ear1="Genmei Earring",
         ear2="Etiolation Earring",
-        body="Jhakri Robe +2",
+        body="Amalric Doublet +1",
         hands="Malignance Gloves",
         ring2="Defending Ring",
         ring1="Gelatinous Ring +1",
@@ -335,7 +335,7 @@ function get_sets()
         body="Malignance Tabard",
         hands="Malignance Gloves",
         ring1="Chirich Ring +1",
-        ring2="Chirich Ring +",
+        ring2="Chirich Ring +1",
         back= RDMCape.TP,
         waist="Reiki Yotai",
         legs="Malignance Tights",
@@ -510,8 +510,8 @@ function get_sets()
 
         head="Malignance Chapeau",
         neck="Fotia Gorget",
-        ear1="Mache Earring +1",
-        ear2="Sherida Earring",
+        ear2="Mache Earring +1",
+        ear1="Sherida Earring",
         body="Ayanmo Corazza +2",
         hands="Malignance Gloves",
         ring1="Begrudging Ring",
@@ -743,7 +743,7 @@ function get_sets()
         body ="Amalric Doublet +1",
         hands="Amalric Gages +1",
         ring1="Freke ring",
-        ring2="Shiva ring",
+        ring2="Metamorph ring +1",
         back=RDMCape.MACC,
         waist="Orpheus's Sash",
         legs="Amalric Slops +1",
@@ -774,7 +774,7 @@ function get_sets()
         back=RDMCape.MACC,
         waist="Orpheus's Sash",
         legs="Amalric Slops +1",
-        feet="Vitiation Boots +2",
+        feet="Vitiation Boots +3",
     }
     -- used with toggle, default: F10
     -- Pieces to swap from freen nuke to Magic Burst
@@ -806,7 +806,7 @@ function get_sets()
         back=RDMCape.MACC,
         waist="Luminary sash",
         legs=ChironicLegs.A,
-        feet="Vitiation Boots +2"
+        feet="Vitiation Boots +3"
 
     }
 
@@ -830,7 +830,7 @@ function get_sets()
         back=RDMCape.MACC,
         waist="Luminary sash",
         legs=ChironicLegs.A,
-        feet="Vitiation Boots +2"
+        feet="Vitiation Boots +3"
 
     }
     -- Type C-potency from: Int & "Enfeeb Potency" gear
@@ -850,7 +850,7 @@ function get_sets()
         back=RDMCape.MACC,
         waist="Luminary sash",
         legs=ChironicLegs.A,
-        feet="Vitiation Boots +2"
+        feet="Vitiation Boots +3"
 
     }
     --Type D-potency from: Enfeeb Skill & "Enfeeb Potency" gear
@@ -870,7 +870,7 @@ function get_sets()
         back="Ghostfyre Cape", --10
         waist="Rumination Sash", --7
         legs="Psycloth Lappas", --13
-        feet="Vitiation Boots +2"
+        feet="Vitiation Boots +3"
     }
     -- Tpe E-potency from: Enfeeb skill, Mnd, & "Enfeeb Potency" gear
     sets.midcast.Enfeebling.skillmndpot = {
@@ -889,7 +889,7 @@ function get_sets()
         back="Ghostfyre Cape",
         waist="Luminary sash",
         legs=ChironicLegs.A,
-        feet="Vitiation Boots +2"
+        feet="Vitiation Boots +3"
 
     }
     -- Type F-potency from "Enfeebling potency" gear only
@@ -909,7 +909,7 @@ function get_sets()
         back="Ghostfyre Skill",
         waist="Luminary sash",
         legs=ChironicLegs.A,
-        feet="Vitiation Boots +2"
+        feet="Vitiation Boots +3"
 
     }
     
